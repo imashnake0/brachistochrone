@@ -20,14 +20,13 @@ def abs(x):
         return x
 
 def brachistochrone(a, x1, y1):
-    def diffeqs(w, t, p):
-        [x, y, yd] = w # d matrix
+    def diffeqs(w, y, p):
+        [x, y] = w # d matrix
         [a] = p # parameters
         if y/((2*a)-y) >= 0:
-            der = [np.sqrt(abs(y/((2*a)-y))), yd, 9.8]
+            der = [np.sqrt(abs((y/((2*a)-y)))), 1]
         else:
-            der = [np.sqrt(abs(y/((2*a)-y))), yd, 9.8]
-
+            der = [np.sqrt(abs((y/((2*a)-y)))), 1]
         return der
 
     # time scale
@@ -35,27 +34,26 @@ def brachistochrone(a, x1, y1):
 
     # containing parameters and initial conditions
     p = [a]
-    w0 = [x1, y1, 9.8]
+    w0 = [x1, y1]
 
 
     wsol = odeint(diffeqs, w0, t, args = (p, ))
-
-    # THIS FIXED IT!
+    #print(len(wsol[:, 1]))
     for i in range(0, len(wsol[:, 1])):
-        if wsol[i, 1] > 2*a:
+        if (wsol[i, 1] >= 2*a):
             wsol[i, 1] *= -1
-            wsol[i, 1] += 4*a 
-    
+            wsol[i, 1] += 4*a
+
     y_values = []
-    for i in range(0, len(wsol[:, 1])):
+    for i in range(len(wsol[:, 1])):
         if wsol[i, 1] >= 0:
-            y_values.append(-1*wsol[i, 1])
+            y_values.append(-1*wsol[i, 1])  
 
     x_values = []
-    for i in range(0, len(y_values)):
+    for i in range(len(y_values)):
         x_values.append(wsol[i, 0])
 
-    #print(len(y_values), len(wsol[:, 1]))
+
     #plt.figure(figsize=(100, 100))
     #ax = plt.gca() #you first need to get the axis handle
     #ax.set_aspect() #sets the height to width ratio to 1.5. 
@@ -63,7 +61,7 @@ def brachistochrone(a, x1, y1):
     plt.xlabel('x')
     plt.ylabel('y')
 
-for a in np.linspace(1, 100, 100): #np.linspace(0, 100, 50):
+for a in np.linspace(1, 20, 100): #np.linspace(0, 100, 50):
     brachistochrone(a, x1, y1)
 
 plt.show()
