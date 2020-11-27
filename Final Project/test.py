@@ -23,45 +23,61 @@ def brachistochrone(a, x1, y1):
     def diffeqs(w, y, p):
         [x, y] = w # d matrix
         [a] = p # parameters
-        if y/((2*a)-y) >= 0:
-            der = [np.sqrt(abs((y/((2*a)-y)))), 1]
-        else:
-            der = [np.sqrt(abs((y/((2*a)-y)))), 1]
+        #if y/((2*a)-y) >= 0:
+        der = [np.sqrt((y/((2*a)-y))), 1]
+        #else:
+            #der = [np.sqrt(abs((y/((2*a)-y)))), 1]
         return der
 
     # time scale
-    t = np.linspace(0, 100, 50000)
+    y = np.linspace(0, 15, 500)
 
     # containing parameters and initial conditions
     p = [a]
     w0 = [x1, y1]
 
-
-    wsol = odeint(diffeqs, w0, t, args = (p, ))
-    #print(len(wsol[:, 1]))
+    wsol = odeint(diffeqs, w0, y, args = (p, ))
+    
+    y1 = []
     for i in range(0, len(wsol[:, 1])):
-        if (wsol[i, 1] >= 2*a):
-            wsol[i, 1] *= -1
-            wsol[i, 1] += 4*a
+        if i>2 and wsol[i, 1] != 0:
+            y1.append(-1*wsol[i, 1])
 
-    y_values = []
-    for i in range(len(wsol[:, 1])):
-        if wsol[i, 1] >= 0:
-            y_values.append(-1*wsol[i, 1])  
+    y2 = []
+    for i in range(0, len(y1)):
+        y2.append(y1[-1*(i+1)])
+    
+    y1.pop()
 
-    x_values = []
-    for i in range(len(y_values)):
-        x_values.append(wsol[i, 0])
+    y3 = y1 + y2
 
+    x1 = []
+    for i in range(0, len(wsol[:, 0])):
+        if i>2 and wsol[i, 0] != 0:
+            x1.append(wsol[i, 0])
+
+    x2 = []
+    for i in range(0, len(x1)):
+        x2.append(-1*x1[-1*(i+1)] + 2*np.pi*a)
+
+    x1.pop()
+    x2[0] = np.pi
+
+    x3 = x1 + x2
+
+    #print(x3)
+    #print(len(x1), len(y3))
+    #print(x1[1993])
 
     #plt.figure(figsize=(100, 100))
     #ax = plt.gca() #you first need to get the axis handle
     #ax.set_aspect() #sets the height to width ratio to 1.5. 
-    plt.plot(x_values, y_values, 'k-')
-    plt.xlabel('x')
-    plt.ylabel('y')
+    
+    plt.plot(x3, y3, 'k-')
+    #plt.xlabel('x')
+    #plt.ylabel('y')
 
-for a in np.linspace(1, 20, 100): #np.linspace(0, 100, 50):
+for a in [1, 2, 3, 4, 5, 6]: #np.linspace(0, 100, 50):
     brachistochrone(a, x1, y1)
 
 plt.show()
