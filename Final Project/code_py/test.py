@@ -21,7 +21,7 @@ def abs(x):
 
 def brachistochrone(a, x1, y1):
     def diffeqs(w, y, p):
-        [x, y] = w # d matrix
+        [x, xd] = w # d matrix
         [a] = p # parameters
         #if y/((2*a)-y) >= 0:
         der = [np.sqrt((y/((2*a)-y))), 1]
@@ -29,15 +29,17 @@ def brachistochrone(a, x1, y1):
             #der = [np.sqrt(abs((y/((2*a)-y)))), 1]
         return der
 
-    # time scale
-    y = np.linspace(0, 15, 500)
+        # time scale
+    y = np.linspace(0, 15, 10000)
 
-    # containing parameters and initial conditions
+        # containing parameters and initial conditions
     p = [a]
     w0 = [x1, y1]
 
     wsol = odeint(diffeqs, w0, y, args = (p, ))
-    
+    plt.plot(wsol[:, 0], -1*wsol[:, 1])
+# THIS FIXES THE HALF-GRAPHS, IGNORE FOR NOW.
+'''
     y1 = []
     for i in range(0, len(wsol[:, 1])):
         if i>2 and wsol[i, 1] != 0:
@@ -76,8 +78,8 @@ def brachistochrone(a, x1, y1):
     plt.plot(x3, y3, 'k-')
     #plt.xlabel('x')
     #plt.ylabel('y')
-
-for a in [1, 2, 3, 4, 5, 6]: #np.linspace(0, 100, 50):
+'''
+for a in np.linspace(1, 10, 30): #np.linspace(0, 100, 50):
     brachistochrone(a, x1, y1)
 
 plt.show()
