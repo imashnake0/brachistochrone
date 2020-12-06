@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 import math as mat
 
 #parameters
-#a = 6
+
 
 # initial conditions (here, and final)
-x1 = 0
-y1 = 0
+#x1 = 0
+#y1 = 0
 #x2 = 
 #y2 = 
 
@@ -19,25 +19,30 @@ def abs(x):
     else:
         return x
 
-def brachistochrone(a, x1, y1):
-    def diffeqs(w, y, p):
-        [x, xd] = w # d matrix
-        [a] = p # parameters
+def lorenz(s, r, b):
+    def diffeqs(w, t, p):
+        [x, y, z] = w # d matrix
+        [s, r, b] = p # parameters
         #if y/((2*a)-y) >= 0:
-        der = [np.sqrt((y/((2*a)-y))), 1]
+        der = [s*(y - x),
+               r*x - y - x*z,
+               x*y - b*z]
         #else:
             #der = [np.sqrt(abs((y/((2*a)-y)))), 1]
         return der
 
         # time scale
-    y = np.linspace(0, 15, 10000)
+    t = np.linspace(0, 100, 100000)
 
-        # containing parameters and initial conditions
-    p = [a]
-    w0 = [x1, y1]
+    #print(1/((4*C)**(1/2)))
 
-    wsol = odeint(diffeqs, w0, y, args = (p, ))
-    plt.plot(wsol[:, 0], -1*wsol[:, 1])
+    # containing parameters and initial conditions
+    p = [s, r, b]
+    w0 = [0, 1, 0]
+
+    wsol = odeint(diffeqs, w0, t, args = (p, ))
+    plt.plot(wsol[:, 0], wsol[:, 2])
+    #print(wsol[:, 0])
 # THIS FIXES THE HALF-GRAPHS, IGNORE FOR NOW.
 '''
     y1 = []
@@ -79,7 +84,9 @@ def brachistochrone(a, x1, y1):
     #plt.xlabel('x')
     #plt.ylabel('y')
 '''
-for a in np.linspace(1, 10, 30): #np.linspace(0, 100, 50):
-    brachistochrone(a, x1, y1)
+#for a in np.linspace(1, 10, 30): #np.linspace(0, 100, 50):
+#for a in range(0, 20):
+    #for b in range(0, 20):
+lorenz(10, 28, 8/3)
 
 plt.show()
