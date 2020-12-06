@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+
+
+\usepackage[letterpaper,margin=1.in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\graphicspath{ {./images/} }
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+% define info for title page
+\title{AMATH 271 Miniproject 1: \\ Projectiles with Quadratic Drag}
+\author{Kamalesh Reddy Paluru}
+\date{\today}
+
+
+\begin{document}
+
+% make the title page
+\maketitle
+
+% use enumerate to make a numbered list; in this case, a list of problem solutions
+
+\begin{enumerate}
+
+\item   Used Python to plot the projectiles trajectory with and without air resistance by solving:
+
+\begin{align}
+  \dot{v_x} &= -\dfrac{c}{m} \sqrt{v_x^2+v_y^2} v_x \label{eq1} \\
+  \dot{v_y} &= -g -\dfrac{c}{m} \sqrt{v_x^2+v_y^2} v_y  \label{eq2}
+\end{align}  
+More spcifically:
+
+$\dfrac{d}{dt}$
+$\begin{bmatrix}
+  x \\
+  y \\
+  \dot{x} \\
+  \dot{y} 
+\end{bmatrix}$
+$ = $
+$\begin{bmatrix}
+  \dot{x}  \\
+  \dot{y}  \\
+  -\dfrac{c}{m} \sqrt{\dot{x}^2+\dot{y}^2} \dot{x} \\
+  -g -\dfrac{c}{m} \sqrt{\dot{x}^2+\dot{y}^2} \dot{y} 
+\end{bmatrix}$ \\ \\
+Where $c$, $m$, and $g$ are parameters. Here, $c = 0.00125 kg/m$ (calculated using ball's features), $m = 0.149kg$, and $g = 9.81m/s^2$
+ \\
+ \\
+ \\
+Python code:
+ \\
+\begin{lstlisting}
+  def diffeqs(w, t, p):
+    [x, x1, y, y1] = w   #variable matrix
+    [c, m, g] = p        #parameters
+    der =   [x1,         #differentiated variable matirx
+            (-1*c*x1/m)*(((x1**2)+(y1**2))**(1/2)), 
+            y1, 
+            (-g - (c*y1/m)*(((x1**2)+(y1**2))**(1/2)))]
+  return der
+
+  w0 = [0, vx0, 0, vy0] #initial conditions
+  p = [c, m, g] #parameter matrix
+
+  wsol = odeint(diffeqs, w0, t, args = (p, ))
+\end{lstlisting}
+
+\begin{center}
+\includegraphics[scale=0.7]{Figure_1.png}
+\end{center}
+
+\begin{center}
+  \begin{changemargin}{3cm}{3cm}  
+Figure 1: This figure compares the trajectories of the same particle with (purple) and without (brown) drag. the initial position is $(x_0, y_0) = (0, 0)$. $h^d$ is the maximum height for the path with drag and $h$ is the maximum height of the path without drag.
+  \end{changemargin}
+\end{center}
+
+We see that the trajectory of the projectile with drag is not symmetrical and quickly shifts away from the parabolic (without drag) path. The maximum height is lower since there is also drag in the $\hat{y}$ direction.
+Although I could not find a way to numerically output the maximum height, I was able to find the x-coordinate of the ball when it reaches $h^d$. Python lets users zoom in to the graph (as shown in Figure 2); Max height = $31.50365m$
+\begin{center}
+\includegraphics[scale = 0.7]{zoomin.png}
+\end{center}
+\begin{changemargin}{3cm}{3cm}  
+  \begin{center}
+  Figure 2: The reason why the graph is not a curve is because Python simply breaks time into small intervals (dt) for which the positions, velocities, and accelerations are calculated, the two lines in the picture are the top most ``dts''.
+  \end{center}
+\end{changemargin}
+
+To find how long it takes to return to $y$ = 0; we simply solve for the zeros (numerically) of the $y(t)$ (Figure 3).
+\begin{center}
+\includegraphics[scale=0.7]{3}
+\end{center}
+\begin{center}
+  Figure 3: The graph shows the $y(t)$ vs $t$ plot.
+\end{center}
+After solving for the zeros of $y(t)$ numerically, we find that the time taken by the projectile to reach $y$ = 0 again is: $T = 5.024s$. As for the postion, $R^d$, (from Figure 1) we can solve for the zeros of the $y$ vs $x$ plot; $R^d$ = $108.75m$
+
+\item The following graph shows that $x(t)$ approaches a constant value after a long time.
+  \begin{center}
+  \includegraphics[scale=0.7]{xvst.png}
+  \end{center}
+  \begin{center}
+    Figure 4: the following graph shows $x(t)$ vs $t$
+  \end{center}
+  Position of the asymptote after zooming in on the top right corner of Figure 4: \\ \begin{center} $x(t)$ = $159.122m$.
+  \end{center}
+  \begin{center}
+    \includegraphics[scale=0.7]{asymptote.png}
+  \end{center}
+  
+  By just thinking about it, I came up with a conclusion that was the complete opposite. It would only make sense if it did not stop in the case of 2D motion since at every point in time, the drag force along $\hat{x}$ is either equal to or lesser than what it is when we consider the 1D case (Since, in the 2D case we can split the force into two components based on theta). But, the equations say otherwise: \\
+  %\begin{center}
+     \\
+    $\left\lVert \boldsymbol{F_x} \right\rVert = ma_x = m\cfrac{\mathrm{d} v_x}{\mathrm{d} t} = -cv_x^2$ \\
+     \\
+    $\cfrac{\mathrm{d} v_x}{v_x^2} = -\cfrac{c}{m}\mathrm{d}t$ \\
+     \\
+     \\
+    $\displaystyle\int_{0}^{v_{x0}}  \cfrac{\mathrm{d} v_x}{v_x^2}\, = \displaystyle\int_{0}^{t}-\cfrac{c}{m}\mathrm{d}t$ \\
+     \\
+     \\
+     After integrating:
+     \\
+     \\
+    $\cfrac{1}{v_{0x}} - \cfrac{1}{v_{x}}= -\cfrac{ct}{m}$
+     \\
+    $\cfrac{1}{v_{x}}= \cfrac{1}{v_{0x}} + \cfrac{ct}{m}$ 
+     \\
+     \\
+     \\
+    Overall, we see that $v_x$ is of the form:
+     \\
+     \\
+    $v_x = \cfrac{\cdots}{\cdots + t} $
+     \\
+     \\
+    To get $x(t)$, we must integrate $v_x$ from $t = 0$ to some time $t$. This integral diverges, so $x(t)\longrightarrow \infty$ as $t\longrightarrow \infty$.  
+    We know that there is no analytic solution for the ``2D'' differential equation; but lets look at how $\dot{v}_x$ changes for large $t$:
+     \\
+     \\
+    $\dot{v}_x = -\dfrac{c}{m} \sqrt{v_x^2+v_y^2} v_x$
+     \\
+     \\
+    For larger $t$, $v_y \longrightarrow v_{ter}$ and $v_x \longrightarrow 0$
+     \\
+     \\
+    $\dot{v}_x \longrightarrow -\dfrac{c\cdot v_{ter}}{m} v_x$
+     \\
+     $\dot{v}_x \longrightarrow C v_x$
+     \\
+     \\
+     $\cfrac{\mathrm{d} v_x}{v_x} = C\mathrm{d}t$ \\
+     \\
+     Upon integration:
+     \\
+     \\
+    $v_x = v_{x0}e^{-Ct} $
+     \\
+     \\
+    For some constant C that depends on the projectile and its surroundings.
+     \\
+     \\
+     \\
+    \item To get the graph for purely vertical motion, we simply set $v_0$$_x$ to 0:
+  %\end{center}
+
+\begin{center}
+  \includegraphics[scale=0.7]{verless.png}
+\end{center} \ 
+We see that the maximum height is $37.73m$, which is indeed more than $31.50m$.
+ \\
+ \\
+
+\noindent\rule{16cm}{0.4pt}
+
+\item 
+  \begin{enumerate}  
+  \item Instead of thinking about it as wind, we can think of the projectile having a lower horizontal velocity (ignoring the ground). It's like a boat in a river, if the water has some velocity along the boat's velocity, the whole situation can be modelled as the boat moving slower in already moving water (again, ignoring the ground). This way it makes perfect sense that $\boldsymbol{v'}$ should equal $\boldsymbol{v} - \boldsymbol{u}$, since when we think of how the vector are added, the projectiles vector ``decreases in magnitude and is rotated anti-clockwise''. We are ignoring the ground because, the drag force acting on the projectile has nothing to do with how it moves with respect to the ground and only depends on the \emph{velocity relative to} the air around it. If this is not enough to convince us, we can think of how there are more air molecules that are pushed away from the projectile before it clashes with them.
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+   \\
+  \item Since (from the previous part) we simply modify $f(v)$, we can change the corresponding terms in the differential equations for $\dot{v_x}$ and $v_x$. After which we get the plot in Figure 5:
+  \begin{center}
+    \includegraphics[scale=0.7]{windy.png}
+  \end{center}
+  \begin{center}
+    \begin{changemargin}{3cm}{3cm}  
+  Figure 5: This figure compares the trajectories of the same particle with linearly increasing wind $\alpha y$ (purple) with the original projectile.
+    \end{changemargin}
+  \end{center} 
+  This is exactly as we would expect since the wind causes the particle to move towards the \emph{left}. As shown, $103.93 = R2^d$ $<$ $R^d = 108.75$. 
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
