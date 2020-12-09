@@ -19,29 +19,27 @@ def abs(x):
     else:
         return x
 
-def lorenz(s, r, b):
-    def diffeqs(w, t, p):
-        [x, y, z] = w # d matrix
-        [s, r, b] = p # parameters
+def lorenz():
+    def diffeqs(w, y, p):
+        [x] = w # d matrix
+        [] = p # parameters
         #if y/((2*a)-y) >= 0:
-        der = [s*(y - x),
-               r*x - y - x*z,
-               x*y - b*z]
+        der = [np.sqrt(y/(2 - y))]
         #else:
             #der = [np.sqrt(abs((y/((2*a)-y)))), 1]
         return der
 
         # time scale
-    t = np.linspace(0, 100, 100000)
+    y = np.linspace(0.001, 2.1, 100000)
 
     #print(1/((4*C)**(1/2)))
 
     # containing parameters and initial conditions
-    p = [s, r, b]
-    w0 = [0, 1, 0]
+    p = []
+    w0 = [0]
 
-    wsol = odeint(diffeqs, w0, t, args = (p, ))
-    plt.plot(wsol[:, 0], wsol[:, 2])
+    wsol = odeint(diffeqs, w0, y, args = (p, ))
+    plt.plot(wsol[:, 0], -1*y)
     #print(wsol[:, 0])
 # THIS FIXES THE HALF-GRAPHS, IGNORE FOR NOW.
 '''
@@ -87,6 +85,6 @@ def lorenz(s, r, b):
 #for a in np.linspace(1, 10, 30): #np.linspace(0, 100, 50):
 #for a in range(0, 20):
     #for b in range(0, 20):
-lorenz(10, 28, 8/3)
+lorenz()
 
 plt.show()

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.17)  5 DEC 2020 16:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.17)  9 DEC 2020 08:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -589,10 +589,35 @@ File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 zlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )))
-(/usr/share/texlive/texmf-dist/tex/generic/hologo/hologo.sty
-Package: hologo 2019/12/05 v1.14 A logo collection with bookmark support (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.pathreplacing.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
+e.tex
+\pgfdecoratedcompleteddistance=\dimen268
+\pgfdecoratedremainingdistance=\dimen269
+\pgfdecoratedinputsegmentcompleteddistance=\dimen270
+\pgfdecoratedinputsegmentremainingdistance=\dimen271
+\pgf@decorate@distancetomove=\dimen272
+\pgf@decorate@repeatstate=\count296
+\pgfdecorationsegmentamplitude=\dimen273
+\pgfdecorationsegmentlength=\dimen274
 )
-(/usr/share/texlive/texmf-dist/tex/latex/mathtools/empheq.sty
+\tikz@lib@dec@box=\box60
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.pathreplacing.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)) (/usr/share/texlive/texmf-dist/tex/generic/hologo/hologo.sty
+Package: hologo 2019/12/05 v1.14 A logo collection with bookmark support (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/empheq.sty
 Package: empheq 2017/03/31 v2.15 Emphasizing equations
 
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
@@ -603,64 +628,55 @@ Package: mathtools 2020/01/17 v1.23 mathematical typesetting tools
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count296
-\calc@Bcount=\count297
-\calc@Adimen=\dimen268
-\calc@Bdimen=\dimen269
+\calc@Acount=\count297
+\calc@Bcount=\count298
+\calc@Adimen=\dimen275
+\calc@Bdimen=\dimen276
 \calc@Askip=\skip53
 \calc@Bskip=\skip54
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count298
+\calc@Ccount=\count299
 \calc@Cskip=\skip55
 )
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count299
-\l_MT_multwidth_dim=\dimen270
+\g_MT_multlinerow_int=\count300
+\l_MT_multwidth_dim=\dimen277
 \origjot=\skip56
-\l_MT_shortvdotswithinadjustabove_dim=\dimen271
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen272
-\l_MT_above_intertext_sep=\dimen273
-\l_MT_below_intertext_sep=\dimen274
-\l_MT_above_shortintertext_sep=\dimen275
-\l_MT_below_shortintertext_sep=\dimen276
+\l_MT_shortvdotswithinadjustabove_dim=\dimen278
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen279
+\l_MT_above_intertext_sep=\dimen280
+\l_MT_below_intertext_sep=\dimen281
+\l_MT_above_shortintertext_sep=\dimen282
+\l_MT_below_shortintertext_sep=\dimen283
 )
-\l_EQ_equationtype_int=\count300
-\l_EQ_alignmentmode_int=\count301
-\l_EQ_totalwidth_dim=\dimen277
-\l_EQ_displaywidth_dim=\dimen278
-\l_EQ_temp_linewidth_dim=\dimen279
-\EmphEqdelimitershortfall=\dimen280
-\EmphEqdelimiterfactor=\count302
-\g_EQ_toptag_height_dim=\dimen281
-\g_EQ_bottomtag_depth_dim=\dimen282
-\g_EQ_toprow_height_dim=\dimen283
-\g_EQ_bottomrow_depth_dim=\dimen284
-\g_EQ_widesttag_dim=\dimen285
-\EQ_mathdisplay_box=\box60
-\EQ_tag_box=\box61
-\g_EQ_temprow_int=\count303
+\l_EQ_equationtype_int=\count301
+\l_EQ_alignmentmode_int=\count302
+\l_EQ_totalwidth_dim=\dimen284
+\l_EQ_displaywidth_dim=\dimen285
+\l_EQ_temp_linewidth_dim=\dimen286
+\EmphEqdelimitershortfall=\dimen287
+\EmphEqdelimiterfactor=\count303
+\g_EQ_toptag_height_dim=\dimen288
+\g_EQ_bottomtag_depth_dim=\dimen289
+\g_EQ_toprow_height_dim=\dimen290
+\g_EQ_bottomrow_depth_dim=\dimen291
+\g_EQ_widesttag_dim=\dimen292
+\EQ_mathdisplay_box=\box61
+\EQ_tag_box=\box62
+\g_EQ_temprow_int=\count304
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarydecorations.pathmorphing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex
-\pgfdecoratedcompleteddistance=\dimen286
-\pgfdecoratedremainingdistance=\dimen287
-\pgfdecoratedinputsegmentcompleteddistance=\dimen288
-\pgfdecoratedinputsegmentremainingdistance=\dimen289
-\pgf@decorate@distancetomove=\dimen290
-\pgf@decorate@repeatstate=\count304
-\pgfdecorationsegmentamplitude=\dimen291
-\pgfdecorationsegmentlength=\dimen292
-)
-\tikz@lib@dec@box=\box62
-)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
 decorations.pathmorphing.code.tex))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
@@ -684,22 +700,22 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./Final Project.aux)
 \openout1 = `"Final Project.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -758,7 +774,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box66
-Package hyperref Info: Link coloring OFF on input line 80.
+Package hyperref Info: Link coloring OFF on input line 96.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -771,9 +787,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count312
 )
-LaTeX Info: Redefining \ref on input line 80.
-LaTeX Info: Redefining \pageref on input line 80.
-LaTeX Info: Redefining \nameref on input line 80.
+LaTeX Info: Redefining \ref on input line 96.
+LaTeX Info: Redefining \pageref on input line 96.
+LaTeX Info: Redefining \nameref on input line 96.
 
 (./Final Project.out) (./Final Project.out)
 \@outlinefile=\write4
@@ -782,13 +798,13 @@ LaTeX Info: Redefining \nameref on input line 80.
 \c@lstlisting=\count313
 
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Trying to load font information for U+msa on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 99.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 99.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -796,35 +812,86 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 171.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 171.
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--198
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 202--204
+
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+07.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+)
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+226.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 333--335
+
+ []
+
+[6] [7] [8] [9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 506.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 506.
  (./Final Project.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 171.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 171.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 506.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 506.
 Package rerunfilecheck Info: File `"Final Project".out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 171.
+(rerunfilecheck)             Checksum: 16C5D0D6811BF4E3BEB1ED5039D83347;46.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 506.
  ) 
 Here is how much of TeX's memory you used:
- 20667 strings out of 483183
- 384603 string characters out of 5966292
- 816241 words of memory out of 5000000
- 35276 multiletter control sequences out of 15000+600000
- 542688 words of font info for 62 fonts, out of 8000000 for 9000
+ 21474 strings out of 483183
+ 403420 string characters out of 5966292
+ 890602 words of memory out of 5000000
+ 35930 multiletter control sequences out of 15000+600000
+ 559834 words of font info for 102 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,65p,437b,1363s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmtt10.pfb>
-Output written on "Final Project.pdf" (2 pages, 87702 bytes).
+ 60i,12n,65p,652b,1584s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/imashnake_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tctt100
+0.600pk> </home/imashnake_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+ctt1000.600pk> </home/imashnake_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecbi1095.600pk> </home/imashnake_/.texlive2019/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ectt1095.600pk> </home/imashnake_/.texlive2019/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecbi1200.600pk> </home/imashnake_/.texlive2019/texmf-var/fonts
+/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/imashnake_/.texlive2019/texmf-var
+/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/imashnake_/.texlive2019/tex
+mf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/imashnake_/.texlive20
+19/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/imashnake_/.tex
+live2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/imashnake
+_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/ima
+shnake_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </ho
+me/imashnake_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk
+> </home/imashnake_/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728
+.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy8.pfb>
+Output written on "Final Project.pdf" (9 pages, 200020 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 643 PDF objects out of 1000 (max. 8388607)
+ 242 compressed objects within 3 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
