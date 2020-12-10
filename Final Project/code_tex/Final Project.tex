@@ -165,7 +165,7 @@ Following are out findings and the code:
 
 %\textbf{$\mathcal{L}$}\textit{\textbf{agrangian}}
 
-\noindent Now, consider a small section of the curve, ds (an arbitrarily small ds is a line):
+\noindent Now, consider a small section of the curve, ds (an arbitrarily small ds is a line): 
 
 \begin{center}
   \begin{tikzpicture}
@@ -185,9 +185,9 @@ We can hence write ds in terms of small steps in the x and y direction using the
   $ds^2 = dx^2 + dy^2 \implies ds = \sqrt{dx^2 + dy^2} \implies ds = \sqrt{1 + \left(\cfrac{dy}{dx} \right)^2}\,dx \implies ds = \sqrt{1 + y'(x)^2}\,dx $
 
 Integrating on both sides from $(x_0, y_0)$ to $(x_1, y_1)$:
-
+\begin{center}
   $\displaystyle\int_{(x_0, y_0)}^{(x_1, y_1)} \,ds = \int_{x_0}^{x_1} \sqrt{1 + \dot{y}^2}\,dx$.
-
+\end{center}
   %\begin{center}
   %$\Lagr(x,y,y') = f(x,y,y') = \sqrt{1+y'^2}$
   %\end{center}
@@ -247,7 +247,7 @@ $\verb|y''/(y'**2 + 1)**(3/2) = 0| \implies \ddot{y} = 0:$ (This is, as expected
   Python Code:
 \end{lstlisting}
 
-\begin{lstlisting}[frame= left]
+\begin{lstlisting}[frame = left]
   # LIBRARIES
   import sympy as sp
 
@@ -301,7 +301,10 @@ givemeDE("y", "y", "x")
 \begin{center}
   \section*{2}
   \noindent\rule{16cm}{0.4pt}
-  \section*{Taylor Example 6.2: Brachistochrone} %\cite{Taylor2005}}
+  \section*{Taylor Example 6.2: Brachistochrone} 
+  \begin{changemargin}{3.7cm}{3.7cm}
+    ``Given two points A and B in a vertical plane, what is the curve traced out by a point acted on only by gravity, which starts at A and reaches B in the shortest time.'' - \emph{Johann Bernoulli}
+  \end{changemargin}
   \noindent\rule{16cm}{0.4pt}
 \end{center}
 
@@ -315,7 +318,8 @@ givemeDE("y", "y", "x")
   \def\c{1.4} % center
   \coordinate (C) at (\c, \r);
 
-
+  \node at (0, 0.4) {$(x_0, y_0)$};
+  \node at (6.28, 0.4) {$(x_1, y_1)$};
   \draw[-latex] (O) -- (A) node[anchor=north] {$y$};
   \draw[-latex] (O) -- (2.6*pi,0) node[anchor=west] {$x$};
   \draw[black,domain=0*pi:2*pi,samples=100, line width=0.1] 
@@ -331,17 +335,151 @@ givemeDE("y", "y", "x")
 \end{center}
 %\textbf{$\mathcal{L}$}\textit{\textbf{agrangian}}
 
-``Describe at least three equations for three different methods of solving this problem''
+Now that we know how to minimize a certain quantity numerically using the Euler-Lagrange equations, we will follow the same method in solving this problem. We have:
+
+\begin{center}
+$v = \sqrt{2gy} \implies \cfrac{ds}{dt} = \sqrt{2gy}$
+\end{center}
+
+Since we want to minimize time, we isolate $`dt'$:
+
+\begin{center}
+  $dt = \cfrac{ds}{\sqrt{2gy}}$
+\end{center}
+
+From Section 1.1, we know that $ds = \sqrt{1 + x'(y)^2}$. On substitution:
+
+\begin{center}
+  $dt = \cfrac{\sqrt{1 + x'(y)^2}\,dx}{\sqrt{2gy}}$
+\end{center}
+
+Integrating on both sides from initial point to final point:
+
+\begin{center}
+  $\displaystyle\int_{t_0}^{t_1} \,dt = \int_{x_0}^{x_1} \cfrac{\sqrt{1 + x'(y)^2}}{\sqrt{2gy}}\,dx$
+  $\implies \displaystyle\int_{t_0}^{t_1} \,dt = \cfrac{1}{\sqrt{2g}}\int_{x_0}^{x_1} \sqrt{\cfrac{1 + x'(y)^2}{y}}\,dx$.
+\end{center}
+
+\newpage
 
 \subsection*{2.2 Analysis}
 
-``Analyse each equation and provide intuitive insight to explain why each method is significant.''
-\\
+According to our problem statement, we want to minimize the time, $\displaystyle\int_{t_0}^{t_1} \,dt$. We procced in the same way (Section 1.2), by choosing $\sqrt{\cfrac{1 + x'(y)^2}{y}}$ to be our lagrangian:
 
-\subsection*{2.3 Solutions - \emph{.py}}
+\begin{empheq}[box={\mybluebox[3pt][3pt]}]{equation*}
+  \Lagr(\dot{x}, x, y) = \sqrt{\cfrac{1 + x'(y)^2}{y}}
+\end{empheq}
 
-``Contrast between solutions if possible, which methos was the most interesting, why?''
+\subsection*{2.3 Solutions - \emph{Brach.py}}
 
+The entire program will not be explained since most of it remains the same; the only parts that change are: the definition of the lagrangian and the final DE that we will plot this time.
+
+\noindent The Lagrangian is defined as follows:
+\begin{lstlisting}
+  def L(dvar, dvarp, ivar):
+      return sp.sqrt((dvarp**2 + 1)/ivar)
+\end{lstlisting}
+
+\noindent Also note the change in variables, the independent variable here is $y$ and the dependent variable is $x$, so we change the arguments of the function as follows:
+
+\begin{lstlisting}
+givemeDE("x", "x", "y")
+\end{lstlisting}
+
+\noindent We must also comment out the line that prints the DE's solution. This is because sympy solves DE's analytically to output a cartesian equation, however, in the case of a brachistochrone there is no such equation (or it is rather complicated); we instead verify by solving it numerically and plotting the solution using the following code from \verb|DEnumerical.py|:
+
+\begin{lstlisting}[frame = left]
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+def brach(a):
+    def diffeqs(w, y, p):
+        [x] = w # d matrix
+        [] = p # parameters
+        der = [np.sqrt(y/(2*a - y))] #Spoiler Alert!
+        return der
+
+    # y values
+    y = np.linspace(0.001, 2.1, 100000)
+
+    # containing parameters and initial conditions
+    p = []
+    w0 = [0]
+
+    wsol = odeint(diffeqs, w0, y, args = (p, ))
+    plt.plot(wsol[:, 0], -1*y)
+brach(1)
+plt.show()
+\end{lstlisting}
+
+\noindent Brief explanation of the code above:
+\begin{enumerate}
+\item Again, we import the required libraries; in this program, we will need \verb|numpy| and \verb|scipy| to solve the DE numerically, and then we plot it using \verb|matplotlib.pyplot|.
+\item \verb|brach(a)| is a function that takes `a', the parameter, as an argument.
+\item \verb|diffeqs(w, y, p)| then solves the system of differential equations as per it's definition inside \verb|diffeqs| and returns the derivative of the matrix.
+\item \verb|odeint| then uses \verb|diffeqs|; the initial conditions, \verb|w0|; the y (independent variable) values \verb|y|; and the parameters, here, `\verb|a|' to solve the system and store them in \verb|wsol|
+\item Then, we simply plot $y vs. x$ or, here, \verb|(wsol[:, 0], -1*y)| after adjusting `direction' of y.
+\end{enumerate}
+
+\noindent Now that we have the code out of the way; let's find the DE numerically, we run the program to get:
+
+\begin{lstlisting}[language = html]
+  ∂ℒ/∂x        = 0
+
+
+  ∂ℒ/∂x'       = sqrt((x'**2 + 1)/y)*x'/(x'**2 + 1)
+  
+  
+  d/dy(∂ℒ/∂x')  = y*sqrt((x'**2 + 1)/y)*(x'*x''/y 
+                 - (x'**2 + 1)/(2*y**2))*x'/(x'**2 + 1)**2 
+                 + sqrt((x'**2 + 1)/y)*x''/(x'**2 + 1) 
+                 - 2*sqrt((x'**2 + 1)/y)*x'**2*x''/(x'**2 + 1)**2
+  
+  
+  Required DE      : (-2*y*x'' + x'**3 + x')/(2*y**2*sqrt((x'**2 + 1)/y)*(x'**2 + 1)) = 0
+  \end{lstlisting}  
+
+\noindent Now, observe that \verb|d/dy|$(\partial \Lagr/\partial x')$ looks rather complicated. Instead, as suggested in Taylor we can say that since $\partial \Lagr/\partial x = 0$, \verb|d/dy|$(\partial \Lagr/\partial x') = 0 \implies \partial \Lagr/\partial x' = C$, where $C$ is the constant of integration;
+
+\begin{center}
+$\implies$ \verb|sqrt((x'**2 + 1)/y)*x'/(x'**2 + 1)|  $= \sqrt{\cfrac{x'^2 + 1}{y}}\cdot\cfrac{x'}{x'^2+1} = \cfrac{x'}{\sqrt{y(x'^2+1)}} = C$
+\end{center}
+
+\noindent Setting $C = \sqrt{\cfrac{1}{2r}}$ (as we will see later, r is the radius of the cycloid's circle):
+
+\begin{center}
+$\cfrac{x'^2}{y(x'^2+1)} = C^2 \implies \cfrac{x'^2}{y(x'^2+1)} = \cfrac{1}{2r} \implies 2rx'^2 = y(x'^2+1) \implies x'^2(2r - y) = y$
+\end{center}
+
+\begin{empheq}[box={\mybluebox[5pt][10pt]}]{equation*}
+  x' = \sqrt{\cfrac{y}{2r - y}}
+\end{empheq}
+
+\newpage
+
+\noindent We solve the following ``system'' using \verb|DEnumerical.py|:                        
+
+\begin{center}
+$\left[x\right] = \left[\sqrt{\cfrac{y}{2r - y}}\,\,\right]$  
+\end{center}
+
+\noindent That is:
+
+\begin{center}
+\noindent \verb|      [x] = w|\newline
+\verb|      [a] = p|\newline
+\verb|      der = [np.sqrt(y/((2*a) - y))]|
+\end{center}
+
+\noindent For $a = 1$:
+\begin{center}
+  \makebox[0pt]{\includegraphics[scale=0.8]{brach(1).png}}
+
+\begin{changemargin}{4.5cm}{4.5cm}  
+  Figure 2.1: Cycloid with a circle of radius 1.
+\end{changemargin}
+\end{center}
 \newpage
 
 \begin{center}
@@ -377,14 +515,68 @@ givemeDE("y", "y", "x")
 
 \subsection*{3.2 Analysis}
 
+From Mini-project 1, question 1; we have the following lagrangian for the above system:
+
+$\Lagr = \Lagr(\phi', \phi, t) = \cfrac{m}{2}\, (R^2 \omega^2 + L^2 \dot{\phi}^2 + 2 R \omega L \dot{\phi}\sin(\phi - \omega t)) - mg(R \sin(\omega t) - L \cos(\phi))$ 
+
 \subsection*{3.3 Solutions - \emph{.py}}
+
+Plugging this Lagrangian into \verb|MP2q1.py|, the program retruns the DE, we get (for $\omega = 0$ and $0.2$):
+
+\begin{lstlisting}[language = html]
+  ∂ℒ/∂φ        = -1.0*sin(φ)  # w = 0
+
+
+  ∂ℒ/∂φ'       = 1.0*φ'
+  
+  
+  d/dt(∂ℒ/∂φ')  = 1.0*φ''
+  
+  Required DE      : 1.0*sin(φ) + 1.0*φ'' = 0
+\end{lstlisting} 
+
+\begin{lstlisting}[language = html]
+  ∂ℒ/∂φ        = -1.0*sin(φ) + 0.04*cos(0.2*t - φ)*φ'  # w = 0.2
+
+
+  ∂ℒ/∂φ'       = -0.04*sin(0.2*t - φ) + 1.0*φ'
+  
+  
+  d/dt(∂ℒ/∂φ')  = -0.04*(0.2 - φ')*cos(0.2*t - φ) + 1.0*φ''
+  
+  Required DE      : 1.0*sin(φ) - 0.008*cos(0.2*t - φ) + 1.0*φ'' = 0
+\end{lstlisting} 
+
+\noindent $\omega = 0$:\\
+\verb|1.0*sin(phi) + 1.0*phi'' = 0| \\
+$\implies \phi'' = -\sin{\phi}$
+\\
+\noindent $\omega = 0.2$:\\
+\verb|1.0*sin(phi) - 0.008*cos(0.2*t - phi) + 1.0*phi'' = 0| \\
+$\implies \phi'' = -\sin{\phi} + 0.008\cos{(0.2t - \phi)}$
+
+We hence get the following plots: (just as in Question 1!)
+
+\begin{center}
+  \makebox[0pt]{\includegraphics[scale=0.7]{mp111.png}}
+\begin{changemargin}{4.5cm}{4.5cm}  
+  Figure 2.1: $\implies \phi'' = -\sin{\phi}$.
+\end{changemargin}
+\end{center}
+
+\begin{center}
+  \makebox[0pt]{\includegraphics[scale=0.7]{mp111.png}}
+\begin{changemargin}{4.5cm}{4.5cm}  
+  Figure 2.1: $\implies \phi'' = -\sin{\phi} + 0.008\cos{(0.2t - \phi)}$.
+\end{changemargin}
+\end{center}
 
 \newpage
 
 \begin{center}
   \section*{4}
   \noindent\rule{16cm}{0.4pt}
-  \section*{Mini-Project 2: Question 1} %\cite{Taylor2005}}
+  \section*{Mini-Project 2: Question 2} %\cite{Taylor2005}}
   \noindent\rule{16cm}{0.4pt}
 \end{center}
 
@@ -424,7 +616,42 @@ givemeDE("y", "y", "x")
 
 \subsection*{4.2 Analysis}
 
+For the second question, we had the following Lagrangian:
+\\
+$\Lagr = \Lagr(\dot{x}, x, \dot{\phi}, \phi, t) = \frac{1}{2} m \dot{x}^2 + \frac{1}{2} M \dot{x}^2 + \frac{1}{2} M L^2 \dot{\phi}^2 + M \dot{x}L\dot{\phi}\cos(\phi)) - \frac{1}{2}kx^2 +MgL\cos(\phi)$
+
+\noindent However, observe that this has five arguments, but our program works for three arguments. We could in theory generalize our program, but we will slightly modify it to work for five argument lagrangians (this limitation will be explained in the conclusion). The only limitation is not being able to convert the equation's ``raw'' form to a nicer looking equation; but, we do get an equation that we can plot.
+
+
 \subsection*{4.3 Solutions - \emph{.py}}
+
+Plugging this Lagrangian into \verb|MP2q2.py|, the program retruns the DE, we get 
+
+\begin{lstlisting}[language = html]
+  ∂ℒ/∂x        = 0
+
+
+  ∂ℒ/∂x'       = 1.0*cos(phi(t))*Derivative(phi(t), t) + 1.0*x'
+  
+  
+  d/dt(∂ℒ/∂x')  = -1.0*sin(phi(t))*Derivative(phi(t), t)**2 + 1.0*cos(phi(t))*Derivative(phi(t), (t, 2)) + 1.0*x''
+  
+  
+  Required DE      : -1.0*sin(phi(t))*Derivative(phi(t), t)**2 + 1.0*cos(phi(t))*Derivative(phi(t), (t, 2)) + 1.0*x'' = 0
+\end{lstlisting} 
+
+\noindent \verb|-1.0*sin(phi(t))*Derivative(phi(t), t)**2 + 1.0*cos(phi(t))*Derivative(phi(t), (t, 2))|
+\verb|+ 1.0*x'' = 0| \\
+$\implies -\phi'^2\sin{\phi} + \phi''\cos{\phi} + x'' = 0$
+
+We hence get the following plots: (just as in Question 2!)
+
+\begin{center}
+  \makebox[0pt]{\includegraphics[scale=0.7]{mp221.png}}
+\begin{changemargin}{4.5cm}{4.5cm}  
+  Figure 2.1: $-\phi'^2\sin{\phi} + \phi''\cos{\phi} + x'' = 0$.
+\end{changemargin}
+\end{center}
 
 \newpage
 
@@ -496,6 +723,14 @@ givemeDE("y", "y", "x")
 % \end{center}
 
 \section{Conclusions}
+The report shows, the program involves a 3 step process that can find how the minimization of one quantity affects a system. 
+The system starts at the Lagrangian of the system defined with its independent, dependent and derivative of the dependent variable. The code will then utilize the Euler-Lagrange equations to minimize the quantity that the user defines. The relationship is then used to obtain a differential equation. For simpler problems these DEs can be solved analytically. For Problem 1 this DE states that the double derivative of the indepent variable is 0. This is correct since the solution to that DE is of the same form as the equation of a line. Which is the correct solution to the problem. 
+
+Problem 2 does the same thing as above but instead of minimzing distance it minimizes time. And as the plot shows: the solution is the original brachistochrone that inspired this project. This verified out method and results.
+
+Problems 3 and 4 were added to expand the complexity of the problems that the program can solve. Solutions and plots produced for those problems also match the correct solutions. 
+For further development of this project, a user can potentially expand this code to include problems that involve several dependent variables parametrized by a single quantity or potentially be expanded to any arbitraty n dimensional bodies or n dimensional problems.
+
 
 \begin{thebibliography}{1}
 

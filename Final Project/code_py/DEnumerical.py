@@ -19,28 +19,24 @@ def abs(x):
     else:
         return x
 
-def lorenz():
+def brach():
     def diffeqs(w, y, p):
-        [x] = w # d matrix
+        [x, xp] = w # d matrix
         [] = p # parameters
-        #if y/((2*a)-y) >= 0:
-        der = [np.sqrt(y/(2 - y))]
-        #else:
-            #der = [np.sqrt(abs((y/((2*a)-y)))), 1]
+        der = [xp, -1.0*np.sin(x) + 0.008*np.cos(0.2*y - x)]
         return der
 
         # time scale
-    y = np.linspace(0.001, 2.1, 100000)
+    y = np.linspace(0.0, 20, 100)
 
     #print(1/((4*C)**(1/2)))
 
     # containing parameters and initial conditions
     p = []
-    w0 = [0]
+    w0 = [0.2, 0]
 
     wsol = odeint(diffeqs, w0, y, args = (p, ))
-    plt.plot(wsol[:, 0], -1*y)
-    #print(wsol[:, 0])
+    plt.plot(y, wsol[:, 0])
 # THIS FIXES THE HALF-GRAPHS, IGNORE FOR NOW.
 '''
     y1 = []
@@ -85,6 +81,6 @@ def lorenz():
 #for a in np.linspace(1, 10, 30): #np.linspace(0, 100, 50):
 #for a in range(0, 20):
     #for b in range(0, 20):
-lorenz()
+brach()
 
 plt.show()

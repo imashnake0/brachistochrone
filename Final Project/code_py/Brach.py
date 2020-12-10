@@ -8,7 +8,7 @@ def givemeDE(*args):
 
     #LAGRANGIAN
     def L(dvar, dvarp, ivar):
-        return sp.sqrt(1 + dvarp**2)
+        return sp.sqrt((dvarp**2 + 1)/ivar)
     
     if len(args) == 3:
         # AESTHETICS
@@ -31,11 +31,11 @@ def givemeDE(*args):
         dvarp = sp.Derivative(dvar, ivar)
 
         # PRINTS EACH TERM OF THE LAGRANGIAN
-        print("∂ℒ/∂" + args[-3] + "        =", sp.diff(L(dvar, dvarp, ivar), dvar))
+        print("∂ℒ/∂" + args[-3] + "        =", convertDE(sp.diff(L(dvar, dvarp, ivar), dvar)))
         print('\n')         
-        print("∂ℒ/∂" + args[-3] + "'" + "       =", sp.diff(L(dvar, dvarp, ivar), dvarp))
+        print("∂ℒ/∂" + args[-3] + "'" + "       =", convertDE(sp.diff(L(dvar, dvarp, ivar), dvarp)))
         print('\n')         
-        print("d/d" + args[-1] + "(∂ℒ/∂" + args[-3] + "')" + "  =", sp.diff(sp.diff(L(dvar, dvarp, ivar), dvarp), ivar))
+        print("d/d" + args[-1] + "(∂ℒ/∂" + args[-3] + "')" + "  =", convertDE(sp.diff(sp.diff(L(dvar, dvarp, ivar), dvarp), ivar)))
 
         # FINDS DE USING TERMS ABOVE
         de = sp.simplify(sp.Eq(sp.diff(L(dvar, dvarp, ivar), dvar) - sp.diff(sp.diff(L(dvar, dvarp, ivar), dvarp), ivar), 0))
@@ -45,6 +45,6 @@ def givemeDE(*args):
         # PRINTS OUT DE
         print("Required DE      :", convertDE(convertEq(str(de))))
         
-        print("Required Solution:", sp.dsolve(de))
+        #print("Required Solution:", sp.dsolve(de))
 # EXECUTE PROGRAM!
-givemeDE("y", "y", "x")
+givemeDE("x", "x", "y")
