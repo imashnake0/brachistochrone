@@ -104,7 +104,7 @@ tabsize=3
 \end{center}
 
 \begin{changemargin}{1cm}{1cm}
-\textit{The following project falls in the mathematical domain of Calculus of Variation. It exhibits a computer program that is designed to provide a path of least "insert independent variable here" for any problem in Theoretical Mechanics. The computer program uses principles from Lagrangian Mechanics to achieve this. The problem’s lagrangian (specifically, it's arguments) is the input to the program and, using the Euler-Lagrange equation, the programs provide the user with a plot of the minimized quantity vs the independent variable that they defined.}
+\textit{The following project falls in the mathematical domain of Calculus of Variation. It exhibits a computer program that is designed to provide a path of least "insert independent variable here" for any problem in Theoretical Mechanics. The computer program uses principles from Lagrangian Mechanics to achieve this. The problem's lagrangian (specifically, it's arguments) is the input to the program and, using the Euler-Lagrange equation, the programs provides the user with a plot of the minimized quantity vs the independent variable that they defined.}
 \end{changemargin}
 
 \begin{center}
@@ -114,11 +114,11 @@ tabsize=3
 \end{center}
 
 The problem that inspired this Project is one of the oldest problems in Calculus of Variations. The problem was a challenge by the mathematician Johann Bernoulli. He described the problem as:
-“Given two points A and B in a vertical plane, what is the curve traced out by a particle under the influence of gravity (constant), which starts at A and reaches B in the shortest time.”
+``Given two points A and B in a vertical plane, what is the curve traced out by a particle under the influence of gravity (constant), which starts at A and reaches B in the shortest time.''
 
-In other words: 'A' is any arbitrary point ($x_{0}$, $y_{0}$) in 2 dimensional space and B is defined as ($x_{1}$, $y_{1}$) where $y_{1} \leq y_{0}$ and $x_{0} \neq x_{1}$. This results in B being a translation of A which is under (but not directly under A). The system includes a particle which is supposed to “fall” from A to B because of a constant gravitational force. The objective of the problem is to find the path that would require the least time for the particle to get to B. 
+In other words: 'A' is any arbitrary point ($x_{0}$, $y_{0}$) in 2 dimensional space and B is defined as ($x_{1}$, $y_{1}$) where $y_{1} \leq y_{0}$ and $x_{0} \neq x_{1}$. This results in B being a translation of A which is under (but not directly under A). The system includes a particle which is supposed to ``fall'' from A to B because of a constant gravitational force. The objective of the problem is to find the path that would require the least time for the particle to get to B. 
 
-The problem was attempted and successfully solved by several mathematicians. Isaac Newton famously solved the problem overnight. The solution of this problem was named the “Brachistochrone”.  Johann Bernoulli’s solution being the first, identified this brachistochrone to be the common cycloid. 
+The problem was attempted and successfully solved by several mathematicians. Isaac Newton famously solved the problem overnight. The solution of this problem was named the ``Brachistochrone''.  Johann Bernoulli's solution being the first, identified this brachistochrone to be the common \textbf{cycloid}. 
 
 % \begin{figure}
 %     \centering
@@ -129,7 +129,7 @@ The problem was attempted and successfully solved by several mathematicians. Isa
 
 A cycloid is the path traced out by a point on the circumference of a circle as it rolls on a horizontal surface without slipping. 
 
-Different solutions to this problem were developed until as early as the 2010's. One of these solutions is what inspired this project. It was developed by Mark Levi \cite{Levi2014} in 2014. His solution shows this symmetry in the path of least time called the “tautochrone” property of a brachistochrone, which means that the path a particle would take to fall from any point on the cycloid to B would all be the same! This made us realize that for any mechanical problem there exists 1 solution that describes the path of a least quantity which can be scaled to any magnitude of the problem’s dimensions. 
+Different solutions to this problem were developed until as early as the 2010's. One of these solutions is what inspired this project. It was developed by Mark Levi \cite{Levi2014} in 2014. His solution shows this symmetry in the path of least time called the ``tautochrone'' property of a brachistochrone, which means that the path a particle would take to fall from any point on the cycloid to B would all be the same! This made us realize that for any mechanical problem there exists 1 solution that describes the path of a least quantity which can be scaled to any magnitude of the problem’s dimensions. 
 
 Another solution to the brachistochrone problem is provided in the textbook \cite{Taylor2005}. It involves finding the Lagrangian of the problem and using the Euler-Lagrange equation to find a DE that can be plotted. The resulting plot, as expected, reveals a brachistochrone.
 
@@ -138,9 +138,11 @@ We hence decided to create a program to find the path of least time/distance of 
 To demonstrate this project we tested the program for a couple of problems including problems from Mini-Project 2, AMATH 271 and problems from chapter 6 of Taylor.
 The first two problems of the project are borrowed from Taylor. The first problem is the simplest on the project and helped us understand how to setup the mechanics of the code. It requires us to find the shortest possible path between two points using the Euler-Lagrange method. We know that the answer to this is a straaight line. The problem verifies this by using the arc length measurement and minimizing the distance through that, On the other hand, the second problem is the brachistochrone problem itself, but following the same method as problem 1. We are supposed to find the path of least time to get from A to B (A and B being the points defined above). This problem also involves inverting out independent and dependent variable which is something the code would have to account for to work in all problems. 
 
-The last 2 problems of the project were borrowed from Mini Project 2. These problems are a lot more complex than the first two and use conventional method of finding a Lagrangian to then minimize a quantity. Since we already knew the solutions to these, they served as a good way to find potential shortcomings of our method and also verified anything we did right, 
+The last 2 problems of the project were borrowed from Mini-Project 2. These problems are a lot more complex than the first two and use conventional method of finding a Lagrangian to then minimize a quantity. Since we already knew the solutions to these, they served as a good way to find potential shortcomings of our method and also verified anything we did right.
 
-Following are out findings and the code:
+We could actually improve on this, granted it could take quite a long time, and publish a full-fledged Python libraries. But, most `generealized' Python libraries have around 2000+ lines of code and multiple files; this would also require contribution of sevral people; but this is a start, since, as we will see, it does actually: solve a Lagrangian by substituting into the Euler-Lagrange equation $\longrightarrow$ simplifies the equation to give us a DE of the form $f(\cdots) = 0$ $\longrightarrow$ use this DE to plot required quantities (which was done in Maple for Mini-Project 1). The only part which can be improved upon is having the program manipulate the DE into the system, this way the user will not even have to manually enter a system of DE's.
+\newline
+\noindent \textbf{Following are our findings and the code:}
 
 \newpage
 
@@ -651,6 +653,11 @@ We hence get the following plots: (just as in Question 2!)
 \begin{changemargin}{4.5cm}{4.5cm}  
   Figure 2.1: $-\phi'^2\sin{\phi} + \phi''\cos{\phi} + x'' = 0$.
 \end{changemargin}
+
+\makebox[0pt]{\includegraphics[scale=0.7]{mp222.png}}
+\begin{changemargin}{0.5cm}{0.5cm}  
+  Figure 2.2: $-\phi'^2\sin{\phi} + \phi''\cos{\phi} + x'' = 0$, with initial conditions as in the Mini-Project; we see that this is the exact same graph from the second question.
+\end{changemargin}
 \end{center}
 
 \newpage
@@ -724,13 +731,12 @@ We hence get the following plots: (just as in Question 2!)
 
 \section{Conclusions}
 The report shows, the program involves a 3 step process that can find how the minimization of one quantity affects a system. 
-The system starts at the Lagrangian of the system defined with its independent, dependent and derivative of the dependent variable. The code will then utilize the Euler-Lagrange equations to minimize the quantity that the user defines. The relationship is then used to obtain a differential equation. For simpler problems these DEs can be solved analytically. For Problem 1 this DE states that the double derivative of the indepent variable is 0. This is correct since the solution to that DE is of the same form as the equation of a line. Which is the correct solution to the problem. 
+The system starts with the Lagrangian of the system defined with its independent variable, dependent variable and the derivative of the dependent variable. The code will then utilize the Euler-Lagrange equations to minimize the quantity that the user defines. The relationship is then used to obtain a differential equation. For simpler problems these DE's can be solved analytically. For Problem 1 this DE states that the double derivative of the indepent variable is 0. This is correct since the solution to that DE is of the same form as the equation of a line. Which is the correct solution to the problem (the shortest line between two points is indeed a line). 
 
-Problem 2 does the same thing as above but instead of minimzing distance it minimizes time. And as the plot shows: the solution is the original brachistochrone that inspired this project. This verified out method and results.
+Problem 2 does the same thing as above but instead of minimzing distance it minimizes time, and as the plot shows: the solution is the original brachistochrone that inspired this project. This verified out method and results.
 
 Problems 3 and 4 were added to expand the complexity of the problems that the program can solve. Solutions and plots produced for those problems also match the correct solutions. 
-For further development of this project, a user can potentially expand this code to include problems that involve several dependent variables parametrized by a single quantity or potentially be expanded to any arbitraty n dimensional bodies or n dimensional problems.
-
+For further development of this project, a user can potentially expand this code to include problems that involve several dependent variables parametrized by a single quantity or potentially be expanded to any arbitraty $n$ bodies or $n$ dimensional problems; this was what we were referring to by this project being the start of a potential \textbf{Python Library}! Although this can, depending on comlexity, take months, if not, years to develop.
 
 \begin{thebibliography}{1}
 

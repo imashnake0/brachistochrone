@@ -27,11 +27,11 @@ def diffeqs(w, t, p):
 #phid = 0
 
 # time scale
-t = np.linspace(0, 30, 10000)
+t = np.linspace(0, 3, 10000)
 
 # containing parameters and initial conditions
 p = [m, M, L, g, k]
-w0 = [0.1, -mat.sqrt(2)*0.1, 0, 0]
+w0 = [0.1, 0, 0, 0]
 
 
 wsol = odeint(diffeqs, w0, t, args = (p, ))
